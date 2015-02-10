@@ -36,13 +36,13 @@ def load_movies(session):
         session.commit()
 
 def load_ratings(session):
-    with open('seed_data/u.user', 'rb') as f:
-        reader = csv.reader(f, delimiter=' ')
+    with open('seed_data/u.data', 'rb') as f:
+        reader = csv.reader(f, delimiter='\t')
         try:
             for row in reader:
-                r = Rating(id=row[0], user_id=row[1], movie_id=row[2], rating=row[3])
+                r = Rating(user_id=row[0], movie_id=row[1], rating=row[2])
                 session.add(r)
-        except (csv.Error, TypeError) as e:
+        except (csv.Error, TypeError, sqlalchemy.exc.IntegrityError) as e:
             print "ROXANA RXANA ROXANA ROXANA"
             sys.exit('file %s, line %d: %s' % (r.user, reader.line_num, e))
 
@@ -51,7 +51,7 @@ def load_ratings(session):
 def main(session):
     # You'll call each of the load_* functions with the session as an argument
     # load_users(session)
-    load_movies(session)
+    # load_movies(session)
     load_ratings(session)
 
 if __name__ == "__main__":
