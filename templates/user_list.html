@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<html>
+{% for user in users %}
+    <h2><a href="/movies/{{user.id}}">User {{ user.id }} </a>, age {{ user.age }} has {{ user.ratings|length }} ratings</h2>
+{% endfor %}
+</html>

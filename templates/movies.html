@@ -1,0 +1,19 @@
+MOVIES
+<html>
+    <ul>
+        {% for movie in movies %}
+            <li> NAME: {{ movie[0].name }} RELEASE DATE: {{ movie[0].release_date }} RATING: {{ movie[1].rating }} 
+                <form action="/movies" method="GET">
+                    <label>Change rating: </label>
+                    <select>
+                        <option name="rating" value="1">1</option>
+                        <option name="rating" value="2">2</option>
+                        <option name="rating" value="3">3</option>
+                        <option name="rating" value="4">4</option>
+                        <option name="rating" value="5">5</option>
+                    </select>
+            </li>
+        {% endfor %}
+    </ul>
+</html>
+
